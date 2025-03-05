@@ -6,6 +6,27 @@
 	<title>Coin Flip</title>
 </head>
 <body>
-	
+	<div>
+		<p>Guess Coin Flip Game</p>
+	</div>
+	<div>
+		<button onclick="playGame('Heads')">Heads</button>
+		<button onclick="playGame('Tails')">Tails</button>
+	</div>
+	<script>
+		function letGuess() {
+			const randomNumber = Math.random();
+			if(randomNumber < 0.5) return 'Heads';
+			else return 'Tails';
+		} 
+
+		function playGame(playerMove) {
+			const guess = letGuess();
+			let result;
+
+			result = (playerMove === guess) ? "You Won!! 🎉" : "You Lose!! 😢";
+			alert(`You picked ${playerMove}. Coin Landed on ${guess}. ${result}`);
+		}
+	</script>
 </body>
 </html>
