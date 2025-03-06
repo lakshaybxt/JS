@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Functions</title>
+</head>
+<body>
+	<script>
+		function greet(name) {
+			if(!name) console.log('Hi there!')
+			else console.log(`Hello ${name}!`);
+		}
+		greet('Lakir');
+		greet();
+
+		function converToFahrenheit(celsius) {
+			return ((celsius * 9 / 5) + 32).toFixed(2);
+		}
+		console.log(converToFahrenheit(25));
+
+		function converToCelsius(fahrenheit) {
+			return ((fahrenheit - 32) * 5 / 9).toFixed(2);
+		}
+		console.log(converToCelsius(86));
+
+		function convertTemperature(degrees, unit) {
+			if(unit === 'C') return `${converToFahrenheit(degrees)}F`;
+			else return `${converToCelsius(degrees)}C`;
+		}
+		console.log(convertTemperature(25, 'C'));
+		console.log(convertTemperature(86, 'F'));
+
+		function convertLength(length, from , to) {
+			if(from === to) return `${length} ${to}`;
+
+			let result;
+			if(from === 'miles') {
+				if(to === 'km') result = length * 1.6;
+				else result = length * 5280;
+			} else if(from === 'km') {
+				if(to === 'miles') result = length / 1.6;
+				else result = length * 3281;
+			} else if(from === 'ft') {
+				if(to === 'miles') result = length / 5280;
+				else result = length / 3281;
+			}
+
+			if (result !== undefined) {
+				return `${result.toFixed(2)} ${to}`;
+			} else {
+				return `Invalid conversion from '${from}' to '${to}'.`;
+			}
+		}
+
+		console.log(convertLength(5, "miles", "km"));
+		console.log(convertLength(5, "miles", "ft"));
+		console.log(convertLength(5, "km", "ft"));
+	</script>
+</body>
+</html>
