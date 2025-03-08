@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DOM Projects</title>
+	<style>
+		body {
+    font-family: Arial;
+    padding-bottom: 110px;
+		}
+		.subs {
+			border: none; 
+			background-color:  black;
+			color: white;
+			padding: 10px 15px;
+			border-radius: 50px;
+			font-weight: bold;
+			cursor: pointer;
+			margin-bottom: 35px;
+		}
+		.is-subscribed {
+			background-color: rgb(240, 240, 240);
+			color: black;
+		}
+		.cost-input {
+			padding: 10px 10px;
+			/* width: 200px;
+			height: 35px; */
+			font-size: 15px;
+		}
+		.calculate-button {
+			color: white;
+			background-color: green;
+			border: none;
+			padding: 12px 15px;
+			font-size: 15px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<p>YouTube Subscribe Button</p>
+	<button class="subs-button subs" onclick="subscribe();">Subscribe</button>
+	
+	<p>Amazon Shipping Calculator</p>
+	<p>Orders under $40 = +$10 shipping.</p>
+	<p>Orders over $40 = FREE shipping.</p>
+	
+	<input type="text" placeholder="Cost of order" class="js-cost-input cost-input">
+	<button class="js-calculate-button calculate-button" onclick="calculateTotal();">Calculate</button>
+	<p class="js-total-cost"></p>
+	
+		<p>Rock Paper Scissors</p>
+		<a href="10-rock-paper-scissors.html">Click here</a>
+
+	<script>
+		const but = document.querySelector('.subs-button');
+		function subscribe() {
+				if(but.innerHTML === 'Subscribe') {
+					but.innerHTML = 'Subscribed';
+					but.classList.add('is-subscribed');
+				} else {
+					but.innerHTML = 'Subscribe';
+					but.classList.remove('is-subscribed');
+				}
+		}
+		document.querySelector('.js-cost-input')
+			.addEventListener('keydown', (event) => {
+				if(event.key === 'Enter') calculateTotal();
+			});
+		function calculateTotal() {
+			const inputElement = document.querySelector('.js-cost-input');
+			let cost = Number(inputElement.value);
+
+			if(isNaN(cost) || cost < 0) {
+				document.querySelector('.js-total-cost').innerHTML = `Please enter a valid amount`;
+				return;
+			}
+			if(cost < 40) cost += 10;
+
+			document.querySelector('.js-total-cost').innerHTML = `
+				$${cost}
+			`;
+		}
+
+	</script>
+</body>
+</html>

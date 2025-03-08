@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Cart Quantity</p>
+    <button onclick="display();">Show Quantity</button>
+    <button onclick="updateQty(1);">Add to Cart</button>
+    <button onclick="updateQty(2);">+2</button>
+    <button onclick="updateQty(3);">+3</button>
+    <button onclick="updateQty(4);">+4</button>
+    <button onclick="updateQty(5);">+5</button>
+    <button onclick="decreaseQty(1);">Remove from cart</button>
+    <button onclick="decreaseQty(2);">-2</button>
+    <button onclick="decreaseQty(3);">-3</button>
+    <button onclick="
+        cartQuantity = 0;
+        console.log('cart was reset.');
+        display();
+    ">Reset Carts</button>
+		<p class="js-display"></p>
+    <script>
+        let cartQuantity = JSON.parse(localStorage.getItem('qty'))|| 0;
+
+        function updateQty(qty) {
+            if(cartQuantity + qty <= 10 ) {
+                cartQuantity += qty;
+            } else {
+                alert('Sorry! The cart is full😢!!');
+            }
+						localStorage.setItem('qty', JSON.stringify(cartQuantity));
+            display();
+        }
+
+        function display() {
+					document.querySelector('.js-display').innerHTML = `Cart quantity: ${cartQuantity}`;
+        }
+
+        function decreaseQty(qty) {
+            if(cartQuantity - qty < 0) {
+                alert('Not enough items in the cart😢!!');
+            } else {
+                cartQuantity -= qty;
+            }
+						localStorage.setItem('qty', JSON.stringify(cartQuantity));
+            display();
+        }
+
+				display();
+    </script>
+</body>
+</html>
