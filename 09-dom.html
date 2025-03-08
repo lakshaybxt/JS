@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			background-color: rgb(26 26 26);
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<button class="">Hello</button>
+	<button class="js-button">Hii</button>
+	<script>
+		/*
+		document.title = 'heloooo';
+		// document.querySelector
+		document.body.innerHTML = `<button>Good</button>`;
+
+		console.log(typeof document.body);
+		console.log(typeof document.body.innerHTML);
+		*/
+		console.log(document.querySelector('button'));
+		document.querySelector('button').innerHTML = 'Changed';
+		document.querySelector('.js-button').innerHTML = 'Changed';
+	</script>
+</body>
+</html>
