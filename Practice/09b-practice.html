@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" placeholder="Cost of order" class="js-input">
+	<button onclick="calculateTotal()">Calculate</button>
+	<p class="js-cost"></p>
+
+	<input class="js-play" placeholder="Type something" class="play" onkeyup="play();">
+	<p class="js-text"></p>
+	<script>
+		function play() {
+			const inputElement = document.querySelector('.js-play')
+			document.querySelector('.js-text').innerHTML = inputElement.value;
+		}
+
+		function calculateTotal() {
+			const input = document.querySelector('.js-input');
+
+			let cost = Number(input.value) * 100;
+
+			if(cost < 4000) cost += 1000;
+			document.querySelector('.js-cost').innerHTML = `$${cost / 100}`;
+		}
+	</script>
+</body>
+</html>
