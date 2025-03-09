@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+				font-family: Arial;
+				padding-bottom: 110px;
+				font-weight: bold;
+		}
+		.toggleButton {
+			padding: 12px 20px;
+			background-color: rgb(230, 230, 230);
+			color: black;
+			font-weight: bold;
+			border: none;
+			border-radius: 5px;
+			margin-right: 20px;
+			cursor: pointer;
+		}
+		.is-toggled {
+			background-color: black;
+			color: white;
+		}
+        .cost-input {
+			padding: 10px 10px;
+			/* width: 200px;
+			height: 35px; */
+			font-size: 15px;
+		}
+		.calculate-button {
+			color: white;
+			background-color: green;
+			border: none;
+			padding: 12px 15px;
+			font-size: 15px;
+			cursor: pointer;
+		}
+        .red-mes {
+            color: red;
+        }
+	</style>
+</head>
+<body>
+	<button class="js-gaming toggleButton" onclick="but('.js-gaming')">Gaming</button>
+	<button class="js-music toggleButton" onclick="but('.js-music')">Music</button>
+	<button class="js-tech toggleButton" onclick="but('.js-tech')">Tech</button>
+
+    <p></p>
+
+    <input type="text" placeholder="Cost of order" class="js-cost-input cost-input">
+	<button class="js-calculate-button calculate-button" onclick="calculateTotal();">Calculate</button>
+	<p class="js-total-cost"></p>
+	<script>
+		function but(choose) {
+			let cla = document.querySelector(`${choose}`);
+			if(!(cla.classList.contains('is-toggled'))) {
+                turnOffLast();
+				cla.classList.add('is-toggled');
+			} else {
+				cla.classList.remove('is-toggled');
+			}
+		}
+
+        function turnOffLast() {
+            let cla = document.querySelector('.is-toggled');
+            if(cla) cla.classList.remove('is-toggled');
+        }
+
+        document.querySelector('.js-cost-input')
+			.addEventListener('keydown', (event) => {
+				if(event.key === 'Enter') calculateTotal();
+			});
+		function calculateTotal() {
+			const inputElement = document.querySelector('.js-cost-input');
+			let cost = Number(inputElement.value);
+
+			if(isNaN(cost) || cost < 0) {
+                document.querySelector('.js-total-cost').classList.add('red-mes');
+				document.querySelector('.js-total-cost').innerHTML = `Please enter a valid amount`;
+				return;
+			}
+			if(cost < 40) cost += 10;
+            if(document.querySelector('.js-total-cost').classList.contains('red-mes')) {
+                document.querySelector('.js-total-cost').classList.remove('red-mes');
+            }
+			document.querySelector('.js-total-cost').innerHTML = `
+				$${cost}
+			`;
+		}
+	</script>
+</body>
+</html>
