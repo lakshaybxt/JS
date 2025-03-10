@@ -1,47 +1,62 @@
-const todoList = [];
+const todoList = JSON.parse(localStorage.getItem('task')) || [];
 
-const input = document.querySelector('.js-input');
-const dateInput = document.querySelector('.js-date');
+		const input = document.querySelector('.js-input');
+		const date = document.querySelector('.js-date');
+		const emptyMessage = document.querySelector('.js-empty-message');
 
-renderTodoList();
+		renderTodoList();
 
-function renderTodoList() {
-    let todoListHTML = ``;
+		function renderTodoList() {
+			let todoListHTML = ``;
 
-    for(let i = 0; i<todoList.length; i++) {
-        const todoObject = todoList[i];
-        // const name = todoObject.name;
-        // const dueDate = todoObject.dueDate;
-        const {name, dueDate} = todoObject;
-        todoListHTML += `
-            <div>${name}</div>
-            <div>${dueDate}</div>
-            <button class="delete-todo-button" onclick="
-                todoList.splice(${i}, 1);
-                renderTodoList();
-            ">Delete</button>
-        `;
-    }
+			// if(todoList.length === 0) {
+			// 	emptyMessage.textContent = "No tasks yet! Add one.";
+			// 	return;
+			// }
+			// emptyMessage.textContent = '';
+			
+			for(let i=0; i<todoList.length; i++) {
+				const todoObject = todoList[i];
+				const {name, dueDate} = todoObject;
 
-    document.querySelector('.js-text').innerHTML = todoListHTML;
+				todoListHTML += ` 
+					<div>${name}</div>
+					<div>${dueDate}</div>
+					<button class="delete-todo-button" onclick=" deleteTodo(${i})">Delete</button>
+				`;
 
-}
-input.addEventListener('keydown', (event) => {
-    if(event.key === 'Enter') addTodo();
-}); 
+			}
+			document.querySelector('.js-text').innerHTML = todoListHTML;
+		}
 
-function addTodo() {
-    const name = input.value;
-    const dueDate = dateInput.value;
-    todoList.push({
-        // name: name, 
-        // duedate: duedate
-        name,
-        dueDate
-    });
+		input.addEventListener('keydown', (event) => {
+			if(event.key === 'Enter') addTodo();
+		});
 
-    console.log(todoList);
-    input.value = ``;
+		function addTodo() {
+			const name = input.value.trim();
+			const dueDate = date.value;
 
-    renderTodoList()
-}
+			if(!name) return;
+
+			todoList.push({
+				name,
+				dueDate
+			});
+			console.log(todoList);
+			input.value = '';
+			date.valueAsDate = new Date();
+
+			saveTask();
+			renderTodoList();
+		}
+
+		function deleteTodo(index) {
+			todoList.splice(index, 1);
+			saveTask();
+			renderTodoList();
+		}
+
+		function saveTask() {
+			localStorage.setItem('task', JSON.stringify(todoList));
+		}
