@@ -37,7 +37,7 @@
 		}
 		runTwice(function() { console.log('12b'); });
 		runTwice(add);
-
+*/
 		//12c
 		const but = document.querySelector('.start-button');
 		let interval;
@@ -54,6 +54,7 @@
         ischanged = false;
 			}
 		});
+/*
 		//12d
 		const but = document.querySelector('.start-button');
 		but.addEventListener('click', () => {
@@ -85,7 +86,6 @@
 				document.title = `App`
 			}
 		}, 1000);
-*/
 		//12h
 		let message = 2;
 		let interval;
@@ -94,22 +94,22 @@
 		
 		function displayNotification () {
 			if (isDisplayingNotification) {
-					return;
-				}
-				
+				return;
+			}
+			
 			isDisplayingNotification = true;
-
+			
 			interval = setInterval(() => {
 				if(document.title === `App`) {
 					document.title = `(${message}) New Messages`
 				} else {
 					document.title = `App`
-				}
-			}, 1000);
-		}
+			}
+		}, 1000);
+	}
+	
 		
-		
-		document.querySelector('.addded').addEventListener('click', () => {
+	document.querySelector('.addded').addEventListener('click', () => {
 			message++;
 			displayNotification();
 			console.log(message);
@@ -122,13 +122,14 @@
 			}
 			console.log(message);
 		});
-
+		
 		function stopNotification() {
 			clearInterval(interval);
 			document.title = 'App';
 			isDisplayingNotification = false;
 		}
-
+		
+*/
 	</script>
 </body>
 </html>

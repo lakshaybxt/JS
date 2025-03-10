@@ -115,7 +115,28 @@
 }
 */
 
+		// Array - forEach
+		['make dinner', 
+		'wash dishes', 
+		'watch youtube'
+		].forEach((value, index) => {
+			if(value === 'wash dishes') return; //skip wash dishes
+			console.log(value);
+			console.log(index);
+		});
 
-</script>
+		// Array - filter
+		console.log([1, -3, 5].filter((value, index) => {
+			return (value >= 0);
+		}));
+
+		// Array - map
+		console.log([1, 1, 3].map((value, index) => {
+			return value + 10;
+		}));
+
+		console.log([1, 1, 3].map(value =>  value + 10));
+
+	</script>
 </body>
 </html>

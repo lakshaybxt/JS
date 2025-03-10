@@ -28,10 +28,14 @@ body {
     margin-top: 60px;
 }
 .reset-score-button,
-.atuo-play-button {
+.atuo-play-button,
+.confirmation-button {
     background-color: white;
     border: none;
     font-size: 15px;
     padding: 8px 15px;
     cursor: pointer;
+}
+.confirmation-button {
+    margin-right: 10px;
 }
