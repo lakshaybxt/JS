@@ -7,6 +7,7 @@
 </head>
 <body>
 	<script>
+/*
 		function greeting() {
 			console.log('hello');
 		}
@@ -55,6 +56,16 @@
 			console.log(`Timeout ${i+1}`);
 			i++;
 		}, 1000);
+*/
+
+	['make dinner', 
+	'wash dishes', 
+	'watch youtube'
+	].forEach((value, index) => {
+		if(value === 'wash dishes') return;
+		console.log(value);
+		console.log(index);
+	});
 
 	</script>
 </body>
