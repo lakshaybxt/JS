@@ -27,7 +27,8 @@ body {
 .score {
     margin-top: 60px;
 }
-.reset-score-button {
+.reset-score-button,
+.atuo-play-button {
     background-color: white;
     border: none;
     font-size: 15px;
