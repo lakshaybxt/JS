@@ -10,16 +10,52 @@ let interval;
 
 function autoPlay() {
     if(!isAutoPlaying) {
+        console.log('auto-plays enabled');
         interval = setInterval(() => {
             const move = pickComputerMove();
             playGame(move);
-        }, 1500);
+        }, 1000);
         isAutoPlaying = true;
     } else {
         clearInterval(interval);
         isAutoPlaying = false;
+        console.log('auto-play diabled');
     }
 }
+
+document.querySelector('.js-rock-button')
+    .addEventListener('click', () => {
+        playGame('Rock');
+    });
+
+document.querySelector('.js-paper-button')
+    .addEventListener('click', () => {
+        playGame('Paper');
+    });
+
+document.querySelector('.js-scissor-button')
+    .addEventListener('click', () => {
+        playGame('Scissors');
+    });
+
+document.querySelector('.js-reset-score-button')
+    .addEventListener('click', () => {
+        resetGame();
+    });
+
+document.querySelector('.js-atuo-play-button')
+    .addEventListener('click', () => {
+        autoPlay();
+    });
+
+document.body.addEventListener('keydown', (event) => {
+    if(event.key === 'r') playGame('Rock');
+    else if(event.key === 'p') playGame('Paper');
+    else if(event.key === 's') playGame('Scissors');
+    else if(event.key === 'Backspace') resetGame();
+    else if(event.key === 'a') autoPlay();
+    // console.log(event.key);
+})
 
 function updateScoreDisplay(result, move, computerMove) {
     document.querySelector('.js-score').innerHTML = `
